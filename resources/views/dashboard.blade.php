@@ -21,15 +21,14 @@
         </style>
     </head>
     <body class="antialiased">
-        <a class="btn btn-success" href="{{ route('task.create') }}">create task</a>
-        <div>
+        <a class="btn btn-create" href="{{ route('task.create') }}">create task</a>
+        <div class="content">
             <label> List of Tasks </label>
             <div>
-
-                <table class=" table table-bordered table-striped table-hover datatable datatable-Campaign">
+                <table class=" table">
                     <thead>
                         <tr>
-                            <th width="10">
+                            <th>
                                 Task ID
                             </th>
                             <th>
@@ -73,7 +72,7 @@
                                     {{ $task->created_at ?? '' }}
                                 </td>
                                 <td>
-                                    <a class="btn btn-xs btn-info" href="{{ route('task.edit', $task->id) }}">
+                                    <a class="btn btn-edit" href="{{ route('task.edit', $task->id) }}">
                                         Edit
                                     </a>
                                 </td>
@@ -81,29 +80,42 @@
                                     <form action="{{ route('task.destroy', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                        <input type="submit" class="btn btn-remove" value="Delete">
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
     </body>
+    <style>
+        .content{
+            padding-left:40px;
+        }
+        .btn-create{
+            padding: 10px 10px 7px 10px;
+            background-color: #7eff00;
+            border-radius: 5px;
+            display: block;
+            max-width: 100px;
+            margin: 10px 20px 14px 20px;
+        }
+        .btn-edit{
+            background-color: #24ffe3;
+            padding: 5px;
+            border-radius: 7px;
+            margin: 10px;
+        }
+        .btn-remove{
+            background-color: #f09f9f;
+            padding: 5px;
+            border-radius: 7px;
+            margin: 10px;
+        }
+        td {
+            padding: 15px;
+        }
+    </style>
 </html>
